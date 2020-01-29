@@ -21,8 +21,8 @@ class ClassesTimetable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double myWidth =4*width;
-    double myHeight = height-80;
+    double myWidth =8*width;
+    double myHeight = height-90;
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(

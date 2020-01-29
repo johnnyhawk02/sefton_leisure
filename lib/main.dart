@@ -99,8 +99,9 @@ class _MyHomePageState extends State<MyHomePage> {
       )
     ];
 
+
     return Scaffold(
-      backgroundColor: Colors.white70,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(title),
       ),

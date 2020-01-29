@@ -15,6 +15,12 @@ Map dayColors = {
   'Sunday': Colors.redAccent,
 };
 
+Map siteColors = {
+  'Meadows Leisure Centre': Colors.yellow,
+  'Crosby Lakeside': Colors.orange,
+  'Bootle Leisure Centre': Colors.lightBlueAccent
+};
+
 Map<String, double> daysIndex = {
   'Monday': 0,
   'Tuesday': 1,
@@ -56,7 +62,7 @@ class Event {
       (convertStringTimeToDouble(finish) - TimeTable.left) *
           TimeTable.multiplier;
   double get width => right - left;
-  double get height => 1 / 14;
+  double get height => 1 / 16;
   double get dayIndex => daysIndex[day];
   String get poolType {
     if (this.info.contains('Learner')) {
@@ -69,7 +75,7 @@ class Event {
   }
 
   double get top =>
-      (poolType == 'learner' ? daysIndex[day] + 0.5 : daysIndex[day] + 0.0) / 7;
+      0.05 + (poolType == 'learner' ? daysIndex[day] + 0.5 : daysIndex[day] + 0.0) / 8;
 
   String get shortName =>
       this.name.replaceAll('Les Mills ', '').replaceAll(' Virtual', '');
@@ -133,6 +139,10 @@ class Event {
     print(this.day);
     return dayColors[this.day];
   }
+
+  Color get siteColor {
+     return siteColors[this.site];
+  }
 }
 
 class LeisureCentre {
@@ -174,8 +184,8 @@ class LeisureCentre {
         type: e['type'],
         info: e['info'],
         day: e['day'],
-        start: e['time'].split(' - ')[0],
-        finish: e['time'].split(' - ')[1],
+        start: e['start'],
+        finish: e['finish'],
       ));
     });
   }
@@ -184,6 +194,14 @@ class LeisureCentre {
   List classList({String filterDay, String className}) {
     List<Event> tmpEvents = [];
     List<Event> filteredEvents = [];
+    //events.sort((a, b) => (a.left).compareTo(b.left));
+
+    events.sort((a, b) {
+      var r = a.dayIndex.compareTo(b.dayIndex);
+      if (r != 0) return r;
+      return a.left.compareTo(b.left);
+    });
+
     if (filterDay == null || filterDay == '') {
       tmpEvents = events;
 

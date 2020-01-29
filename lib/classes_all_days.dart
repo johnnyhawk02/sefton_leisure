@@ -15,30 +15,28 @@ class ClassesAllDays extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: ListView(
-        children: ListTile.divideTiles(
+        child: ListView(
+      children: ListTile.divideTiles(
         context: context,
         tiles: List.generate(myList.length, (index) {
           Event event = myList[index];
-          return
-            ListTile(
+          return ListTile(
             leading: CircleAvatar(
               backgroundColor: event.dayColor,
               child: Text(event.day.substring(0, 2)),
-              maxRadius: 20,
+              maxRadius: 30,
               foregroundColor: Colors.white,
             ),
-            title: Text(event.shortName),
-            subtitle: Text(event.start),
+            title: Text('${event.site} ${event.shortName}'),
+            subtitle: Text('${event.start} - ${event.finish}'),
             trailing: myList[index].isVirtual
-                ? Icon(
-                    Icons.tv,
-                    color: Colors.black45,
+                ? CircleAvatar(
+                    backgroundColor: Colors.grey,
+                    child: Text('V'),
+                    maxRadius: 10,
+                    foregroundColor: Colors.white,
                   )
-                : Icon(
-                    Icons.accessibility,
-                    color: Colors.black45,
-                  ),
+                : Text(''),
 
             //dense: true,
           );
