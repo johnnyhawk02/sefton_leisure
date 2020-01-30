@@ -65,7 +65,7 @@ class Event {
       (convertStringTimeToDouble(finish) - TimeTable.left) *
           TimeTable.multiplier;
   double get width => right - left;
-  double get height => 1 / 16;
+  double get height => 1 / 8;
   double get dayIndex => daysIndex[day];
   String get poolType {
     if (this.info.contains('Learner')) {
@@ -78,8 +78,7 @@ class Event {
   }
 
   double get top =>
-      0.05 +
-          (poolType == 'learner' ? daysIndex[day] + 0.5 : daysIndex[day] + 0.0) / 8;
+      0.05 + daysIndex[day]  / 8;
 
   String get shortName =>
       this.name.replaceAll('Les Mills ', '').replaceAll(' Virtual', '');
