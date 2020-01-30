@@ -16,9 +16,11 @@ double convertStringTimeToDouble(s) {
  };
 
  Map siteColors = {
-   'Meadows Leisure Centre': Colors.yellow,
+   'Meadows Leisure Centre': Colors.green,
    'Crosby Lakeside': Colors.orange,
-   'Bootle Leisure Centre': Colors.lightBlueAccent
+   'Bootle Leisure Centre': Colors.lightBlueAccent,
+   'Dunes': Colors.blue,
+   'Netherton Activity Centre': Colors.pink
  };
 
 Map<String, double> daysIndex = {

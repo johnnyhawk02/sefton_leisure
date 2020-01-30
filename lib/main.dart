@@ -34,7 +34,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String classFilter = '';
-  String title = 'mdw';
+  String title = '';
   String currentDay = 'monday';
   LeisureCentre mdw = LeisureCentre();
   int _currentPageIndex = 0;
@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 () {
               classFilter = myClass;
 
-              title = 'MDW ${classFilter == "" ? 'all classes' : classFilter}';
+              title = '${classFilter == "" ? 'all classes' : classFilter}';
               _currentPageIndex=0;
 
             },
@@ -142,9 +142,9 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _currentPageIndex = index;
       if (index==0) {
-        title = 'MDW ${classFilter == "" ? 'all classes' : classFilter}';
+        title = '${classFilter == "" ? 'all classes' : classFilter}';
       }else{
-        title = 'MDW Swim';
+        title = 'Swim';
       }
 
     });
