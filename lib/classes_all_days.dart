@@ -4,6 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sefton_leisure/event.dart';
+import 'package:sefton_leisure/utils.dart';
 
 class ClassesAllDays extends StatefulWidget {
   const ClassesAllDays({
@@ -24,46 +25,12 @@ class _ClassesAllDaysState extends State<ClassesAllDays> {
     currentDay = null;
     int myCounter = 0;
     int numDays = 0;
-    //LOL
-    if (widget.myList
-            .firstWhere((e) => e.day == 'Monday', orElse: () => null) !=
-        null) {
-      numDays++;
-    }
-    if (widget.myList
-            .firstWhere((e) => e.day == 'Tuesday', orElse: () => null) !=
-        null) {
-      numDays++;
-    }
-    if (widget.myList
-            .firstWhere((e) => e.day == 'Wednesday', orElse: () => null) !=
-        null) {
-      numDays++;
-    }
-    if (widget.myList
-            .firstWhere((e) => e.day == 'Thursday', orElse: () => null) !=
-        null) {
-      numDays++;
-    }
-    if (widget.myList
-            .firstWhere((e) => e.day == 'Friday', orElse: () => null) !=
-        null) {
-      numDays++;
-    }
-    if (widget.myList
-            .firstWhere((e) => e.day == 'Saturday', orElse: () => null) !=
-        null) {
-      numDays++;
-    }
-    if (widget.myList
-            .firstWhere((e) => e.day == 'Sunday', orElse: () => null) !=
-        null) {
-      numDays++;
-    }
-    //LOL
+    LeisureCentre.days.forEach((day) {
+      if (widget.myList.firstWhere((e) => e.day == day, orElse: () => null) != null)   numDays++;
+    });
 
-    print(numDays);
     return ListView.builder(
+      key: Key(Utils.CreateCryptoRandomString(88)),
       itemCount: widget.myList == null ? 1 : widget.myList.length + numDays,
       itemBuilder: (BuildContext context, int index) {
         Event event = widget.myList[myCounter];
@@ -94,8 +61,8 @@ class _ClassesAllDaysState extends State<ClassesAllDays> {
                 maxRadius: 25,
                 foregroundColor: Colors.white,
               ),
-              title: Text('${event.siteShortName} ${event.shortName}'),
-              subtitle: Text('${event.start} - ${event.finish}'),
+              title: Text('${event.shortName}'),
+              subtitle: Text('${event.day}: ${event.start} - ${event.finish}'),
               trailing: event.isVirtual
                   ? CircleAvatar(
                       backgroundColor: Colors.grey,

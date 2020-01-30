@@ -95,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ClassesTimetable(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        myList: mdw.classList(className:'', filterDay:'').where((e) => e.type == 'pool').toList(),
+        myList: mdw.classList(className:'', filterDay:'', filterSite: 'Bootle Leisure Centre').where((e) => e.type == 'pool').toList(),
       )
     ];
 
