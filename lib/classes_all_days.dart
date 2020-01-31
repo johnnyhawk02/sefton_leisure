@@ -59,32 +59,40 @@ class _ClassesAllDaysState extends State<ClassesAllDays> {
                 elevation: 0.2,
                 shape: RoundedRectangleBorder(
 
-                  borderRadius: BorderRadius.circular(32.0),
+                  borderRadius: BorderRadius.circular(30.0),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
                   child: Column(
                     children: List.generate(newList.length, (index) {
                       var event = newList[index];
-                      return ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: event.siteColor,
-                          child: Text(event.siteShortName,style: TextStyle(fontSize: 12),),
-                          maxRadius: 20,
-                          foregroundColor: Colors.white,
-                        ),
-                        title: Text('${event.shortName}'),
-                        subtitle: Text('${event.day}: ${event.start} - ${event.finish}'),
-                        trailing: event.isVirtual
-                            ? CircleAvatar(
-                          backgroundColor: Colors.grey,
-                          child: Text('V'),
-                          maxRadius: 10,
-                          foregroundColor: Colors.white,
-                        )
-                            : Text(''),
+                      return Column(
+                        children: <Widget>[
+                          ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor: event.siteColor,
+                              child: Text(event.siteShortName,style: TextStyle(fontSize: 14),),
+                              maxRadius: 24,
+                              foregroundColor: Colors.white,
+                            ),
+                            title: Text('${event.shortName}'),
+                            subtitle: Text('${event.day}: ${event.start} - ${event.finish}'),
+                            trailing: event.isVirtual
+                                ? CircleAvatar(
+                              backgroundColor: Colors.grey,
+                              child: Text('V'),
+                              maxRadius: 10,
+                              foregroundColor: Colors.white,
+                            )
+                                : Text(''),
 
-                        //dense: true,
+                            //dense: true,
+                          ),
+                          index<newList.length-1?Padding(
+                            padding: const EdgeInsets.fromLTRB(80, 0, 20, 0),
+                            child: Container(color: Colors.grey[200],height: 1),
+                          ):Container(height: 1,),
+                        ],
                       ); //robohash.org api provide you different images for any number you are giving
                     }),
                   ),
