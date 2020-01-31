@@ -47,7 +47,7 @@ class ClassesPage extends StatelessWidget {
                   Align(
                     alignment: Alignment.topRight,
                     child: CircleAvatar(
-                      backgroundColor: myList[index].color,
+                      backgroundColor: myList[index].classColor,
                       //myList[index].shortName.toLowerCase().contains('pump')?Colors.red:Colors.blue,
                       child: Text(myList[index].isVirtual?'V':''),
                       maxRadius: 12,

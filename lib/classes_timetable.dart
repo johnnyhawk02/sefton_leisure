@@ -1,9 +1,7 @@
-import 'dart:math';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:sefton_leisure/event.dart';
-import 'package:zoom_widget/zoom_widget.dart';
+import 'grid_overlay.dart';
 
 class ClassesTimetable extends StatelessWidget {
   const ClassesTimetable({
@@ -35,7 +33,7 @@ class ClassesTimetable extends StatelessWidget {
                     left: event.left * myWidth,
                     top: event.top * myHeight,
                     child: Container(
-                      color: event.color,
+                      color: event.classColor,
                       height: event.height * myHeight - 1,
                       width: event.width * myWidth - 1,
                       child: Padding(
@@ -50,14 +48,10 @@ class ClassesTimetable extends StatelessWidget {
                 }),
               ),
             )),
-        Positioned(
-          top: 0,
-            child: Container(
-          height: height,
-          width: 200,
-          color: Color.fromRGBO(0, 0, 0, 0.05),
-        )),
+        GridOverlay(height: height),
       ],
     );
   }
 }
+
+
