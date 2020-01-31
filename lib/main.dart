@@ -96,13 +96,14 @@ class _MyHomePageState extends State<MyHomePage> {
       ClassesTimetable(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        myList: mdw.classList(className:'', filterDay:'', filterSite: 'Bootle Leisure Centre').where((e) => e.type == 'pool').toList(),
+        myList: mdw.classList(className:'', filterDay:'', filterSite: 'Meadows Leisure Centre').where((e) => e.poolType == 'main').toList(),
+        myGrid: mdw.gridLine,
       )
     ];
 
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: Text(title),
       ),

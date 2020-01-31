@@ -1,6 +1,6 @@
 
 import 'package:sefton_leisure/event.dart';
-import 'package:sefton_leisure/grid_llist.dart';
+import 'package:sefton_leisure/grid_list.dart';
 import 'events_list.dart';
 import 'grid_lines.dart';
 

@@ -7524,7 +7524,7 @@ List eventsList = [
     "type": "pool",
     "info": "Leisure Pool",
     "start": "11:00",
-    "finish": "01:00",
+    "finish": "13:00",
   },
   {
     "site": "Dunes",

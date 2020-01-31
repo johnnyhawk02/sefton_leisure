@@ -1,9 +1,6 @@
 import 'package:sefton_leisure/time_table.dart';
 import 'package:sefton_leisure/utils.dart';
 
-
-
-
 class GridLines {
   String time;
   bool bold;
@@ -17,5 +14,5 @@ class GridLines {
       (Utils.convertStringTimeToDouble(time) - TimeTable.left) *
       TimeTable.multiplier;
 
-  double get width => bold ? 2 : 1;
+  double get width => bold ? 1 : 0.5;
 }
