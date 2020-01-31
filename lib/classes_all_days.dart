@@ -47,39 +47,47 @@ class _ClassesAllDaysState extends State<ClassesAllDays> {
               widget.myList.where((e) => e.day == dayList[dayIndex]).toList();
 
           return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(dayList[dayIndex]),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 8, 16, 0),
+                child: Text(dayList[dayIndex]),
+              ),
               Card(
                 color: Colors.white,
                 elevation: 0.2,
                 shape: RoundedRectangleBorder(
 
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(32.0),
                 ),
-                child: Column(
-                  children: List.generate(newList.length, (index) {
-                    var event = newList[index];
-                    return ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: event.siteColor,
-                        child: Text(event.siteShortName),
-                        maxRadius: 25,
-                        foregroundColor: Colors.white,
-                      ),
-                      title: Text('${event.shortName}'),
-                      subtitle: Text('${event.day}: ${event.start} - ${event.finish}'),
-                      trailing: event.isVirtual
-                          ? CircleAvatar(
-                        backgroundColor: Colors.grey,
-                        child: Text('V'),
-                        maxRadius: 10,
-                        foregroundColor: Colors.white,
-                      )
-                          : Text(''),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+                  child: Column(
+                    children: List.generate(newList.length, (index) {
+                      var event = newList[index];
+                      return ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: event.siteColor,
+                          child: Text(event.siteShortName,style: TextStyle(fontSize: 12),),
+                          maxRadius: 20,
+                          foregroundColor: Colors.white,
+                        ),
+                        title: Text('${event.shortName}'),
+                        subtitle: Text('${event.day}: ${event.start} - ${event.finish}'),
+                        trailing: event.isVirtual
+                            ? CircleAvatar(
+                          backgroundColor: Colors.grey,
+                          child: Text('V'),
+                          maxRadius: 10,
+                          foregroundColor: Colors.white,
+                        )
+                            : Text(''),
 
-                      //dense: true,
-                    ); //robohash.org api provide you different images for any number you are giving
-                  }),
+                        //dense: true,
+                      ); //robohash.org api provide you different images for any number you are giving
+                    }),
+                  ),
                 ),
               ),
             ],
