@@ -7,6 +7,7 @@ Map siteColors = {
   'Dunes': Colors.blue,
   'Netherton Activity Centre': Colors.pink
 };
+
 Map dayColors = {
   'Monday': Colors.orange,
   'Tuesday': Colors.redAccent,
@@ -16,23 +17,24 @@ Map dayColors = {
   'Saturday': Colors.teal,
   'Sunday': Colors.redAccent,
 };
+
 Map classColors = {
-  'public swim': Colors.blue,
-  'bootle and north': Colors.green,
-  'adults only': Colors.cyan,
-  'swim & splash': Colors.pinkAccent,
-  'pump': Colors.red,
-  'spin': Colors.blue,
-  'trip': Colors.blue,
-  'sprint': Colors.blue,
-  'rpm': Colors.blue,
-  'yoga': Colors.yellow,
-  'pilates': Colors.green,
-  'zumba': Colors.green,
-  'aqua': Colors.pink,
-  'combat': Colors.teal,
-  'tai chi': Colors.indigoAccent,
-  'grit': Colors.deepOrangeAccent,
-  'padwork': Colors.purple,
-  'boxer': Colors.purple,
+  'Public Swim': Colors.blue,
+  'Bootle and north': Colors.green,
+  'Adults Only': Colors.cyan,
+  'Swim & Splash': Colors.pinkAccent,
+  'Pump': Colors.red,
+  'Spin': Colors.blue,
+  'Trip': Colors.blue,
+  'Sprint': Colors.blue,
+  'Rpm': Colors.blue,
+  'Yoga': Colors.yellow,
+  'Pilates': Colors.green,
+  'Zumba': Colors.green,
+  'Aqua': Colors.pink,
+  'Combat': Colors.teal,
+  'Tai Chi': Colors.indigoAccent,
+  'Grit': Colors.deepOrangeAccent,
+  'Padwork': Colors.purple,
+  'Boxer': Colors.purple,
 };

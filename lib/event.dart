@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 import 'utils.dart' show Utils;
 
-class GridLines {}
 
 class Event {
   Map<String, double> daysIndex = {

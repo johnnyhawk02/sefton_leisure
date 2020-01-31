@@ -1,6 +1,8 @@
 
 import 'package:sefton_leisure/event.dart';
+import 'package:sefton_leisure/grid_llist.dart';
 import 'events_list.dart';
+import 'grid_lines.dart';
 
 class LeisureCentre {
   List classFilters = [
@@ -29,6 +31,7 @@ class LeisureCentre {
   ];
 
   List<Event> events = [];
+  List<GridLines> gridLine = [];
   String openingTime;
   String closingTime;
 
@@ -46,6 +49,13 @@ class LeisureCentre {
         day: e['day'],
         start: e['start'],
         finish: e['finish'],
+      ));
+    });
+
+    gridList.forEach((e) {
+      gridLine.add(GridLines(
+        time: e['time'],
+        bold: e['bold'],
       ));
     });
   }
