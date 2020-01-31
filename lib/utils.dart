@@ -9,4 +9,9 @@ class Utils {
 
     return base64Url.encode(values);
   }
+
+  static double convertStringTimeToDouble(s) {
+    return double.parse(s.split(':')[0]) + double.parse(s.split(':')[1]) / 60;
+  }
+
 }

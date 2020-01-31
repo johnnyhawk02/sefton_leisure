@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sefton_leisure/event.dart';
 import 'package:sefton_leisure/utils.dart';
 
+import 'leisure_centre.dart';
+
 class ClassesAllDays extends StatefulWidget {
   const ClassesAllDays({
     Key key,

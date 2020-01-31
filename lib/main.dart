@@ -6,6 +6,7 @@ import 'classes_all_days.dart';
 import 'classes_page.dart';
 import 'classes_timetable.dart';
 import 'event.dart';
+import 'leisure_centre.dart';
 
 void main() => runApp(MyApp());
 
