@@ -5,6 +5,7 @@ import 'package:menu/menu.dart';
 import 'classes_all_days.dart';
 import 'classes_page.dart';
 import 'classes_timetable.dart';
+import 'drop_down_pools.dart';
 import 'event.dart';
 import 'leisure_centre.dart';
 
@@ -41,6 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _currentPageIndex = 0;
 
   var _value;
+
+  String _pool = 'Meadows Leisure Centre';
   @override
   Widget build(BuildContext context) {
     //List tempList = mdw.classList(classFilter);
@@ -96,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ClassesTimetable(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        myList: mdw.classList(className:'', filterDay:'', filterSite: 'Meadows Leisure Centre').where((e) => e.poolType == 'main').toList(),
+        myList: mdw.classList(className:'', filterDay:'', filterSite: _pool).where((e) => e.info.toLowerCase().contains('main')).toList(),
         myGrid: mdw.gridLine,
       )
     ];
@@ -106,8 +109,11 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: Text(title),
+       actions: <Widget>[DropdownScreen(changePoolType ),],
       ),
+
       drawer: Drawer(
+
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListView(children: choices),
@@ -140,6 +146,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  void changePoolType(String pool){
+    setState(() {
+      _pool = pool;
+    });
+  }
   void onTabTapped(int index) {
     setState(() {
       _currentPageIndex = index;

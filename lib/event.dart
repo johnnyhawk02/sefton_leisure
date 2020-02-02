@@ -16,6 +16,7 @@ class Event {
   };
 
   String site, siteShortName, name, type, info, day, start, finish;
+  int clash;
 
   Event({
     this.site,
@@ -26,6 +27,7 @@ class Event {
     this.day,
     this.start,
     this.finish,
+    this.clash,
   });
 
   double get left =>
@@ -35,7 +37,13 @@ class Event {
       (Utils.convertStringTimeToDouble(finish) - TimeTable.left) *
       TimeTable.multiplier;
   double get width => right - left;
-  double get height => 1 / 8;
+  double get height {
+    if (clash == null  ) {
+      return 1 / 7;
+    } else {
+      return 1 / 14;
+    }
+  }
   double get dayIndex => daysIndex[day];
   String get poolType {
     if (this.info.contains('Learner')) {
@@ -47,7 +55,14 @@ class Event {
     }
   }
 
-  double get top => daysIndex[day] * height;
+  double get top {
+  if (clash == null) {
+    return daysIndex[day] * height;
+  } else {
+    return (daysIndex[day] + (clash * 1)) * height;
+  }
+
+  }
 
   String get shortName =>
       this.name.replaceAll('Les Mills ', '').replaceAll(' Virtual', '');

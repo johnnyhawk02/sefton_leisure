@@ -4,6 +4,7 @@ import 'package:sefton_leisure/event.dart';
 import 'package:sefton_leisure/grid_lines.dart';
 import 'package:sefton_leisure/leisure_centre.dart';
 import 'package:sefton_leisure/leisure_centre.dart';
+import 'drop_down_pools.dart';
 import 'grid_overlay.dart';
 
 class ClassesTimetable extends StatelessWidget {
@@ -32,6 +33,7 @@ class ClassesTimetable extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             child: Stack(
               children: <Widget>[
+                GridOverlay(height: height, width: myWidth, myGrid:myGrid),
                 Container(
                   width: myWidth,
                   height: height,
@@ -40,16 +42,19 @@ class ClassesTimetable extends StatelessWidget {
                       Event event = myList[index];
                       return Positioned(
                         left: event.left * myWidth,
-                        top: event.top * myHeight + myHeight/12,
+                        top: event.top * myHeight + myHeight/14,
                         child: Container(
                           color: event.classColor,
-                          height: event.height * myHeight , //- 1,
-                          width: event.width * myWidth , //- 1,
+                          height: event.height * myHeight  - 1,
+                          width: event.width * myWidth - 1,
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(2.0),
                             child: AutoSizeText(
+
                               '${event.shortName} ${event.start}',
                               style: TextStyle(color: Colors.white,fontSize: 9),
+                              maxLines: 1,
+
                             ),
                           ),
                         ),
@@ -57,9 +62,9 @@ class ClassesTimetable extends StatelessWidget {
                     }),
                   ),
                 ),
-                GridOverlay(height: height, width: myWidth, myGrid:myGrid),
               ],
             )),
+
 
       ],
     );

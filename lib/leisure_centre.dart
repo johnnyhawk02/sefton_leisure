@@ -49,6 +49,7 @@ class LeisureCentre {
         day: e['day'],
         start: e['start'],
         finish: e['finish'],
+        clash: e['clash'],
       ));
     });
 
