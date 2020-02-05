@@ -52,10 +52,6 @@ List gridList = [
     "bold": true,
   },
   {
-    "time": "18:00",
-    "bold": true,
-  },
-  {
     "time": "19:00",
     "bold": true,
   },

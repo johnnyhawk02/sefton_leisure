@@ -36,25 +36,33 @@ class ClassesTimetable extends StatelessWidget {
                 GridOverlay(height: height, width: myWidth, myGrid:myGrid),
                 Container(
                   width: myWidth,
-                  height: height,
+                  height: height ,
                   child: Stack(
                     children: List.generate(myList.length, (index) {
                       Event event = myList[index];
                       return Positioned(
                         left: event.left * myWidth,
-                        top: event.top * myHeight + myHeight/14,
-                        child: Container(
-                          color: event.classColor,
-                          height: event.height * myHeight  - 1,
-                          width: event.width * myWidth - 1,
-                          child: Padding(
-                            padding: const EdgeInsets.all(2.0),
-                            child: AutoSizeText(
+                        top: event.top * myHeight + myHeight/14 + event.dayIndex*2,
+                        child: GestureDetector(
+                          onTap: (){print ('${event.name} ${event.day}');},
+                          child: Container(
 
-                              '${event.shortName} ${event.start}',
-                              style: TextStyle(color: Colors.white,fontSize: 9),
-                              maxLines: 1,
+                            height: event.height * myHeight ,
+                            width: event.width * myWidth ,
+                            decoration: BoxDecoration(
 
+                                color: event.classColor, //Color.lerp(event.classColor, Color.fromRGBO(255, 255, 255, 0.4), 0.5), //event.classColor,
+                                border: Border.all(color: Colors.white)
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: AutoSizeText(
+
+                                '${event.shortName} ', // ${event.start}',
+                                style: TextStyle(color: Colors.white,fontSize: 9),
+                                maxLines: 1,
+
+                              ),
                             ),
                           ),
                         ),
