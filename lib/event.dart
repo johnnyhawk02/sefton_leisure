@@ -38,7 +38,7 @@ class Event {
       TimeTable.multiplier;
   double get width => right - left;
   double get height {
-    if (clash == null   ) {
+    if (clash == null || clash == 0   ) {
       return 1 / 7;
     } else {
       return 1 / 14;
