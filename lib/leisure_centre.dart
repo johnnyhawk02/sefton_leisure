@@ -50,6 +50,7 @@ class LeisureCentre {
         start: e['start'],
         finish: e['finish'],
         clash: e['clash'],
+        poolName: e['poolName'],
       ));
     });
 
@@ -86,8 +87,10 @@ class LeisureCentre {
     if (filterSite == null || filterSite == '') {
       //tmpEvents = events;
     } else {
+
       filteredEvents = filteredEvents
-          .where((e) => e.site.toLowerCase() == filterSite.toLowerCase())
+          .where((e) => e.site.toLowerCase() == filterSite.split('/')[0].toLowerCase()
+      && e.poolName == filterSite.split('/')[1])
           .toList();
     }
 

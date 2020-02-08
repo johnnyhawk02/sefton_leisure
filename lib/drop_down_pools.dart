@@ -14,13 +14,17 @@ class DropdownScreenState extends State<DropdownScreen> {
 
   Item selectedUser;
   List<Item> users = <Item>[
-    const Item('Meadows Leisure Centre',Icon(Icons.android,color:  const Color(0xFF167F67),)),
-    const Item('Bootle Leisure Centre',Icon(Icons.flag,color:  const Color(0xFF167F67),)),
-    const Item('Dunes',Icon(Icons.format_indent_decrease,color:  const Color(0xFF167F67),)),
+    const Item('Meadows Leisure Centre/Main',Icon(Icons.android,color:  const Color(0xFF167F67),)),
+    const Item('Meadows Leisure Centre/Learner',Icon(Icons.android,color:  const Color(0xFF167F67),)),
+    const Item('Bootle Leisure Centre/Main',Icon(Icons.flag,color:  const Color(0xFF167F67),)),
+    const Item('Bootle Leisure Centre/Leisure',Icon(Icons.flag,color:  const Color(0xFF167F67),)),
+    const Item('Dunes/Main',Icon(Icons.format_indent_decrease,color:  const Color(0xFF167F67),)),
+    const Item('Dunes/Leisure',Icon(Icons.format_indent_decrease,color:  const Color(0xFF167F67),)),
   ];
   @override
   Widget build(BuildContext context) {
     return   DropdownButton<Item>(
+
       hint:  Text("Select item"),
       value: selectedUser,
       onChanged: (Item Value) {

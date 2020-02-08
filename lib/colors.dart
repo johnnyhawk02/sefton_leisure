@@ -18,11 +18,20 @@ Map dayColors = {
   'Sunday': Colors.redAccent,
 };
 
+
 Map classColors = {
   'Public Swim': Colors.blue,
-  'Bootle and north': Colors.green,
-  'Adults Only': Colors.cyan,
-  'Swim & Splash': Colors.pinkAccent,
+  'Bootle and North Swim Club': Colors.grey[400],
+  'Southport Swimming Club': Colors.blue[600],
+  '60+ £1 Swim': Colors.blue[600],
+  'Swim Lessons': Colors.grey[400],
+  '2 Lane Triathlon': Colors.teal,
+  'Adults Only': Colors.blue[600],
+  'Aqua Fit': Colors.pink[800],
+  'Aqua Natal': Colors.pink,
+  'Swim & Splash':Colors.blue[300],
+  'Calm Waters': Colors.blue,
+  "Calm Waters (Ladies)": Colors.pink,
   'Pump': Colors.red,
   'Spin': Colors.blue,
   'Trip': Colors.blue,

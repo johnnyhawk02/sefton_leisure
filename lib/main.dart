@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   var _value;
 
-  String _pool = 'Meadows Leisure Centre';
+  String _pool = 'Meadows Leisure Centre/Main';
   @override
   Widget build(BuildContext context) {
     //List tempList = mdw.classList(classFilter);
@@ -93,14 +93,14 @@ class _MyHomePageState extends State<MyHomePage> {
 //    });
 
     final List<Widget> pages2 = [
-      ClassesAllDays(
-        myList: mdw.classList(className: classFilter, filterDay: ''),
-      ),
       ClassesTimetable(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        myList: mdw.classList(className:'', filterDay:'', filterSite: _pool).where((e) => e.info.toLowerCase().contains('main')).toList(),
+        myList: mdw.classList(className:'', filterDay:'', filterSite: _pool),
         myGrid: mdw.gridLine,
+      ),
+      ClassesAllDays(
+        myList: mdw.classList(className: classFilter, filterDay: ''),
       )
     ];
 

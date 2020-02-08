@@ -15,7 +15,7 @@ class Event {
     'Sunday': 6,
   };
 
-  String site, siteShortName, name, type, info, day, start, finish;
+  String site, siteShortName, name, type, info, day, start, finish, poolName;
   int clash;
 
   Event({
@@ -28,6 +28,7 @@ class Event {
     this.start,
     this.finish,
     this.clash,
+    this.poolName,
   });
 
   double get left =>
