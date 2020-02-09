@@ -9,8 +9,6 @@ import 'drop_down_pools.dart';
 import 'grid_overlay.dart';
 
 class ClassesTimetable extends StatelessWidget {
-
-
   const ClassesTimetable({
     Key key,
     @required this.myList,
@@ -20,33 +18,49 @@ class ClassesTimetable extends StatelessWidget {
   }) : super(key: key);
 
   final List myList;
- final List myGrid;
- final width;
+  final List myGrid;
+  final width;
   final height;
 
   @override
   Widget build(BuildContext context) {
-
-    double myWidth = (MediaQuery.of(context).size.width>1000?1:2) * width;
+    double myWidth = (MediaQuery.of(context).size.width > 1000 ? 1 : 2) * width;
     double topGap = 50;
     double myHeight = height - TimeTable.headerHeight;
     List bottomLayer = myList.where((e) => e.clash == 0).toList();
-    List topLayer = myList.where((e) => e.clash == 1 || e.clash == null).toList();
+    List topLayer =
+        myList.where((e) => e.clash == 1 || e.clash == null).toList();
     return Stack(
       children: <Widget>[
         SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Stack(
               children: <Widget>[
-                Container(height: height, width: myWidth,color: Colors.grey[300],),
-                GridOverlay(height: height, width: myWidth, myGrid:myGrid),
-                EventBox( myList: bottomLayer, myWidth: myWidth, height: height, bottomLayer: bottomLayer, myHeight: myHeight),
-                EventBox( myList: topLayer, myWidth: myWidth, height: height, bottomLayer: bottomLayer, myHeight: myHeight),
-                TimetableOverlay(height: height, width: myWidth,),
+                Container(
+                  height: height,
+                  width: myWidth,
+                  color: Colors.grey[300],
+                ),
+                GridOverlay(height: height, width: myWidth, myGrid: myGrid),
+                EventBox(
+                    myList: bottomLayer,
+                    myWidth: myWidth,
+                    height: height,
+                    bottomLayer: bottomLayer,
+                    myHeight: myHeight),
+                EventBox(
+                    myList: topLayer,
+                    myWidth: myWidth,
+                    height: height,
+                    bottomLayer: bottomLayer,
+                    myHeight: myHeight),
+
               ],
             )),
-
-
+        TimetableOverlay(
+          height: height,
+          width: myWidth,
+        ),
       ],
     );
   }
@@ -60,21 +74,28 @@ class TimetableOverlay extends StatelessWidget {
   }) : super(key: key);
   final double width;
   final double height;
-
   @override
   Widget build(BuildContext context) {
+    double myHeight = height - TimeTable.headerHeight;
+
     return Container(
-      width:width,
-      height:height,
+      width: 100,
+      height: height,
+      color: Color.fromRGBO(255, 255, 255, 0.2),
       child: Stack(
-        children: List<Widget>.generate(7, (i) {
-          return Positioned(top: i.toDouble()*height/7,child: Container(width:400,height:100,color: Colors.blueGrey,));
-        }),
+        children: List<Widget>.generate(
+          7,
+          (i) {
+            return Positioned(
+              top: myHeight / 14 + ((i.toDouble() + 0.4) * myHeight /7),
+              child: Text(['Mon','Tue','Wed','Thu','Fri','Sat','Sun'][i]),
+            );
+          },
+        ),
       ),
     );
   }
 }
-
 
 class EventBox extends StatelessWidget {
   const EventBox({
@@ -97,32 +118,30 @@ class EventBox extends StatelessWidget {
     return Container(
       //color: Colors.grey[100],
       width: myWidth,
-      height: height ,
+      height: height,
       child: Stack(
         children: List.generate(myList.length, (index) {
           Event event = myList[index];
           return Positioned(
             left: event.left * myWidth,
-            top: event.top * myHeight + myHeight/14 , //+ event.dayIndex*2,
+            top: event.top * myHeight + myHeight / 14, //+ event.dayIndex*2,
             child: GestureDetector(
-              onTap: (){print ('${event.name} ${event.day}');},
+              onTap: () {
+                print('${event.name} ${event.day}');
+              },
               child: Container(
-
-                height: event.height * myHeight ,
-                width: event.width * myWidth ,
+                height: event.height * myHeight,
+                width: event.width * myWidth,
                 decoration: BoxDecoration(
-
-                    color: event.classColor, //Color.lerp(event.classColor, Color.fromRGBO(255, 255, 255, 0.4), 0.5), //event.classColor,
-                    border: Border.all(color: Colors.white,width: 0.1)
-                ),
+                    color: event
+                        .classColor, //Color.lerp(event.classColor, Color.fromRGBO(255, 255, 255, 0.4), 0.5), //event.classColor,
+                    border: Border.all(color: Colors.white, width: 0.1)),
                 child: Padding(
                   padding: const EdgeInsets.all(2.0),
                   child: AutoSizeText(
-
                     '${event.shortName} ', // ${event.start}',
-                    style: TextStyle(color: Colors.white,fontSize: 9),
+                    style: TextStyle(color: Colors.white, fontSize: 9),
                     maxLines: 1,
-
                   ),
                 ),
               ),
@@ -133,5 +152,3 @@ class EventBox extends StatelessWidget {
     );
   }
 }
-
-
