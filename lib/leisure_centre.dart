@@ -63,7 +63,7 @@ class LeisureCentre {
   }
   List virtualEventList() => events.where((e) => e.isVirtual).toList();
 
-  List classList({String filterDay, String className, String filterSite}) {
+  List getEventsList({String day, String event, String pool}) {
     // Map<String, Function> filter = {
     //   'adult': (Event e) => {e.name.toLowerCase().contains('adult')},
     //   'zumba': (Event e) => {
@@ -75,27 +75,24 @@ class LeisureCentre {
     List<Event> filteredEvents = [];
     filteredEvents = events;
 
+    if (day == null && event == null && pool==null) {return filteredEvents;}
 
-    if (filterDay == null || filterDay == '') {
-      //tmpEvents = events;
-    } else {
+    if (day != null ) {
       filteredEvents = filteredEvents
-          .where((e) => e.day.toLowerCase() == filterDay.toLowerCase())
+          .where((e) => e.day == day)
           .toList();
     }
 
-    if (filterSite == null || filterSite == '') {
-      //tmpEvents = events;
-    } else {
-
+    if (pool != null) {
       filteredEvents = filteredEvents
-          .where((e) => e.site.toLowerCase() == filterSite.split('/')[0].toLowerCase()
-      && e.poolName == filterSite.split('/')[1])
+          .where((e) => e.site == pool.split('/')[0]
+      && e.poolName == pool.split('/')[1])
           .toList();
     }
 
-    //filteredEvents = tmpEvents.where(filter[className]).toList();
-    switch (className) {
+    if (event == null) {return filteredEvents;}
+
+    switch (event) {
       case 'all':
         {
           filteredEvents = filteredEvents.where((e) => e.type == 'class').toList();
@@ -178,7 +175,7 @@ class LeisureCentre {
         {
           filteredEvents = filteredEvents
               .where(
-                  (e) => e.name.toLowerCase().contains(className.toLowerCase()))
+                  (e) => e.name.toLowerCase().contains(event.toLowerCase()))
               .toList();
         }
     }

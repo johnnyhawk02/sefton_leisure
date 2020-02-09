@@ -4,6 +4,7 @@ import 'package:sefton_leisure/event.dart';
 import 'package:sefton_leisure/grid_lines.dart';
 import 'package:sefton_leisure/leisure_centre.dart';
 import 'package:sefton_leisure/leisure_centre.dart';
+import 'package:sefton_leisure/time_table.dart';
 import 'drop_down_pools.dart';
 import 'grid_overlay.dart';
 
@@ -25,8 +26,10 @@ class ClassesTimetable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double myWidth = (MediaQuery.of(context).size.width>1000?1:8) * width;
-    double myHeight = height - 200;
+
+    double myWidth = (MediaQuery.of(context).size.width>1000?1:2) * width;
+    double topGap = 50;
+    double myHeight = height - TimeTable.headerHeight;
     List bottomLayer = myList.where((e) => e.clash == 0).toList();
     List topLayer = myList.where((e) => e.clash == 1 || e.clash == null).toList();
     return Stack(
@@ -35,10 +38,11 @@ class ClassesTimetable extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             child: Stack(
               children: <Widget>[
+                Container(height: height, width: myWidth,color: Colors.grey[300],),
                 GridOverlay(height: height, width: myWidth, myGrid:myGrid),
                 EventBox( myList: bottomLayer, myWidth: myWidth, height: height, bottomLayer: bottomLayer, myHeight: myHeight),
                 EventBox( myList: topLayer, myWidth: myWidth, height: height, bottomLayer: bottomLayer, myHeight: myHeight),
-
+                TimetableOverlay(height: height, width: myWidth,),
               ],
             )),
 
@@ -47,6 +51,30 @@ class ClassesTimetable extends StatelessWidget {
     );
   }
 }
+
+class TimetableOverlay extends StatelessWidget {
+  const TimetableOverlay({
+    Key key,
+    @required this.width,
+    @required this.height,
+  }) : super(key: key);
+  final double width;
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width:width,
+      height:height,
+      child: Stack(
+        children: List<Widget>.generate(7, (i) {
+          return Positioned(top: i.toDouble()*height/7,child: Container(width:400,height:100,color: Colors.blueGrey,));
+        }),
+      ),
+    );
+  }
+}
+
 
 class EventBox extends StatelessWidget {
   const EventBox({
@@ -67,6 +95,7 @@ class EventBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      //color: Colors.grey[100],
       width: myWidth,
       height: height ,
       child: Stack(

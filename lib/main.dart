@@ -51,6 +51,30 @@ class _MyHomePageState extends State<MyHomePage> {
     print('got tempList');
     List myList;
 
+    AppBar appBar = AppBar(
+      title: Text(title),
+      actions: <Widget>[DropdownScreen(changePoolType ),],
+    );
+
+    BottomNavigationBar bottomNavigationBar = BottomNavigationBar(
+      currentIndex: _currentPageIndex, // new
+      onTap: onTabTapped, // new
+// a new tab is tapped
+      items: [
+        BottomNavigationBarItem(
+          icon: new Icon(Icons.accessibility_new),
+          title: new Text('Classes'),
+        ),
+        BottomNavigationBarItem(
+          icon: new Icon(Icons.beach_access,),
+          title: new Text('Swim timetable'),
+        ),
+//          BottomNavigationBarItem(
+//              icon: Icon(Icons.person), title: Text('Profile'))
+      ],
+    );
+
+
     final choices = List<Widget>.generate(mdw.classFilters.length, (i) {
       var myClass = mdw.classFilters[i];
       return ListTile(
@@ -70,47 +94,25 @@ class _MyHomePageState extends State<MyHomePage> {
       );
     });
 
-//    final pages = List<Widget>.generate(7, (i) {
-//      myList = tempList.where((e) => e.day == mdw.days[i]).toList();
-//      return ClassesPage(
-//        myList: myList,
-//      );
-//    });
-//    final pagesAllDays = List<Widget>.generate(1, (i) {
-//      myList = tempList; //.where((e) => e.day == mdw.days[i]).toList();
-//      return ClassesAllDays(
-//        myList: myList,
-//      );
-//    });
-//
-//    final pagesClassesTimetable = List<Widget>.generate(1, (i) {
-//      myList = tempList.where((e) => e.type == 'pool').toList();
-//      return ClassesTimetable(
-//        width: MediaQuery.of(context).size.width,
-//        height: MediaQuery.of(context).size.height,
-//        myList: myList,
-//      );
-//    });
 
     final List<Widget> pages2 = [
       ClassesTimetable(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        myList: mdw.classList(className:'', filterDay:'', filterSite: _pool),
+        height: MediaQuery.of(context).size.height -
+            kToolbarHeight - kBottomNavigationBarHeight,
+        myList: mdw.getEventsList(pool: _pool),
         myGrid: mdw.gridLine,
       ),
       ClassesAllDays(
-        myList: mdw.classList(className: classFilter, filterDay: ''),
+        myList: mdw.getEventsList(event: classFilter),
       )
     ];
 
 
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      appBar: AppBar(
-        title: Text(title),
-       actions: <Widget>[DropdownScreen(changePoolType ),],
-      ),
+
+      appBar: appBar,
 
       drawer: Drawer(
 
@@ -121,23 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
 
       body: pages2[_currentPageIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentPageIndex, // new
-        onTap: onTabTapped, // new
-// a new tab is tapped
-        items: [
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.accessibility_new),
-            title: new Text('Classes'),
-          ),
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.beach_access,),
-            title: new Text('Swim timetable'),
-          ),
-//          BottomNavigationBarItem(
-//              icon: Icon(Icons.person), title: Text('Profile'))
-        ],
-      ),
+      bottomNavigationBar: bottomNavigationBar
 //      floatingActionButton: FloatingActionButton(
 //        onPressed: () {},
 //        tooltip: 'Increment',
